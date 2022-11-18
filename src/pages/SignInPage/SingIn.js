@@ -18,7 +18,7 @@ export default function SignIn() {
 
 export const Container = styled.div`
   width: 100vw;
-  height: auto;
+  height: 100vh;
   background-color: #8c11be;
   display: flex;
   align-items: center;
