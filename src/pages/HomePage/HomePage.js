@@ -3,6 +3,7 @@ import { Container } from "../SignInPage/SingIn";
 import BackImg from "../../assets/images/back.svg";
 import PlusImg from "../../assets/images/plus.svg";
 import LessImg from "../../assets/images/less.svg";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -10,25 +11,31 @@ export default function HomePage() {
       <BoxContent>
         <Header>
           <h1>Olá, fulano</h1>
-          <img src={BackImg} />
+          <Link to="/">
+            <img src={BackImg} />
+          </Link>
         </Header>
         <Main>
           <p>Não há registros de entrada ou saída</p>
         </Main>
         <Footer>
-          <div>
-            <img src={PlusImg} />
-            <h3>
-              Nova <br /> entrada
-            </h3>
-          </div>
+          <LinkStyled to="/new-entry">
+            <div>
+              <img src={PlusImg} />
+              <h3>
+                Nova <br /> entrada
+              </h3>
+            </div>
+          </LinkStyled>
           <span></span>
-          <div>
-            <img src={LessImg} />
-            <h3>
-              Nova <br /> saída
-            </h3>
-          </div>
+          <LinkStyled to="/new-out">
+            <div>
+              <img src={LessImg} />
+              <h3>
+                Nova <br /> saída
+              </h3>
+            </div>
+          </LinkStyled>
         </Footer>
       </BoxContent>
     </Container>
@@ -40,7 +47,7 @@ const BoxContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Header = styled.header`
@@ -65,7 +72,7 @@ const Header = styled.header`
 const Main = styled.main`
   background-color: #fff;
   width: 100%;
-  height: 440px;
+  height: 455px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -97,7 +104,7 @@ const Footer = styled.footer`
     align-items: flex-start;
     justify-content: space-around;
 
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-size: 17px;
     font-weight: 700;
     color: #fff;
@@ -105,4 +112,9 @@ const Footer = styled.footer`
   span {
     width: 20px;
   }
+`;
+
+const LinkStyled = styled(Link)`
+  width: 100%;
+  height: auto;
 `;
