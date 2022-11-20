@@ -16,8 +16,6 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/new-entry" element={<NewEntry />} />
         <Route path="/new-out" element={<NewOut />} />
-
-
       </Routes>
     </BrowserRouter>
   );

@@ -1,16 +1,46 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { StyledLink } from "../SignUpPage/singUp";
 
 export default function SignIn() {
+  const [form, setForm] = useState({ email: "", password: "" });
+
+  function handleForm(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  function login(e){
+    e.preventDefault()
+    console.log("deu certo")
+
+    
+  }
   return (
     <Container>
       <Main>
         <h1>My Wallet</h1>
-        <Form>
-          <input type="email" placeholder="E-mail" />
-          <input type="password" placeholder="Senha" />
-          <button>Entrar</button>
+        <Form onSubmit={login}>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleForm}
+            placeholder="E-mail"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleForm}
+            placeholder="Senha"
+            required
+          />
+          <button type="submit">Entrar</button>
         </Form>
-        <h2>Primeira vez? Cadastre-se!</h2>
+        <h2>
+          <StyledLink to="/sign-up">Primeira vez? Cadastre-se!</StyledLink>
+        </h2>
       </Main>
     </Container>
   );
@@ -83,9 +113,9 @@ export const Form = styled.form`
     font-weight: 700;
     border: #a328d6;
 
-    :hover{
+    :hover {
       opacity: 0.9;
       box-shadow: 1px 1px 5px #a328d6;
     }
-}
+  }
 `;
