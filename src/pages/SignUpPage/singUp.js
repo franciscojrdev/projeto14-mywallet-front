@@ -21,7 +21,6 @@ export default function SignUp() {
 
     const URL = "http://localhost:5000/sign-up";
     const body = { ...form };
-    console.log("teste", body);
 
     axios
       .post(URL, body)

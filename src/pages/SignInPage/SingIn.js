@@ -1,8 +1,13 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 import { StyledLink } from "../SignUpPage/singUp";
 
 export default function SignIn() {
+  const navigate = useNavigate()
+  const {setToken} = useContext(UserContext)
   const [form, setForm] = useState({ email: "", password: "" });
 
   function handleForm(e) {
@@ -10,10 +15,17 @@ export default function SignIn() {
   }
 
   function login(e){
-    e.preventDefault()
-    console.log("deu certo")
+    e.preventDefault();
+    const URL = "http://localhost:5000/sign-in";
+    const body = {...form};
 
-    
+    axios.post(URL,body).then((res)=>{
+      console.log(res.data);
+      setToken(res.data.token)
+      navigate("/home", {state: res.data })
+    }).catch((err) => {
+      alert("deu ruim")
+      console.log(err.response.data.message)})
   }
   return (
     <Container>

@@ -4,13 +4,39 @@ import BackImg from "../../assets/images/back.svg";
 import PlusImg from "../../assets/images/plus.svg";
 import LessImg from "../../assets/images/less.svg";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function HomePage() {
+  
+  const location = useLocation()
+
+  const token = location.state.token
+  const [items,setItems] =useState([])
+
+  useEffect(()=>{
+    const URI = "http://localhost:5000/home"
+
+    const config = {
+     headers:{
+      Authorization: `Bearer ${token}`
+     } 
+    }
+    axios.get(URI,config).then((res)=>{
+      setItems(res.data)
+      console.log(res.data)
+    }).catch((err) =>{
+      console.log(err.response.data.message)
+      alert("deu ruim")
+    })
+
+  },[])
+
   return (
     <Container>
       <BoxContent>
         <Header>
-          <h1>Olá, fulano</h1>
+          <h1>Olá, {items.user?.name}</h1>
           <Link to="/">
             <img src={BackImg} />
           </Link>
