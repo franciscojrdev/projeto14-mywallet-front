@@ -30,8 +30,8 @@ export const Form = styled.form`
     height: 45px;
     border-radius: 20px;
     color: #fff;
-    margin-top: 20px;
-    font-size: smaller;
+    margin-top: 15px;
+    font-size: 20px;
     border: none;
   }
 `;

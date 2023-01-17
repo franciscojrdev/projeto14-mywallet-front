@@ -17,10 +17,9 @@ export default function SignUp() {
             Create <br />
             new Account
           </h1>
-          <h3>Sign in to continue</h3>
           <Form>
             <span>NOME</span>
-            <input type="email" />
+            <input type="text" />
             <span>EMAIL</span>
             <input type="email" />
             <span>SENHA</span>
@@ -29,6 +28,7 @@ export default function SignUp() {
             <input type="password" />
             <button type="submit">Sign up</button>
           </Form>
+          <h2>Already Have Account? <br/> Login!</h2>
         </Content>
       </Box>
     </Container>
@@ -72,7 +72,8 @@ export const Content = styled.div`
   }
   h2 {
     margin-top: 20px;
-    font-size: 10pt;
+    font-size: 12pt;
+    text-align: center;
   }
   h3 {
     font-size: 12px;

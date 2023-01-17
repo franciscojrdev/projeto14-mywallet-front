@@ -20,7 +20,7 @@ export default function SingIn() {
                 <input type="email"/>
                 <span>SENHA</span>
                 <input type="password"/>
-                <button type="submit">Log in</button>
+                <button type="submit">Login</button>
             </Form>
             <h2>First Time? Sing Up!</h2>
         </Content>
@@ -59,10 +59,10 @@ export const Content = styled.div`
 
 
   h1{
-    font-size: 40px;
+    font-size: 60px;
     color: #fff;
     position: fixed;
-    top: 40%;
+    top: 38%;
   }
   h2{
     margin-top: 20px;
