@@ -7,5 +7,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Raleway", sans-serif;
+  
+  * {
+    box-sizing: border-box;
+  }
 `;
