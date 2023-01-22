@@ -3,8 +3,9 @@ import { Container } from "../../components/Container/Container";
 import { Homebox } from "../../components/Homebox/Homebox";
 import plus from "../../assets/images/plus.svg";
 import less from "../../assets/images/less.svg";
-
 import icone from "../../assets/images/out.svg";
+import { Link } from "react-router-dom";
+import { StyledLink } from "../SingInPage/SignIn";
 
 export default function Home() {
   return (
@@ -12,26 +13,29 @@ export default function Home() {
       <Homebox>
         <NavBar>
           <h2>Olá, Fulano</h2>
-          <img src={icone}></img>
+          <StyledLink to="/">
+            <img src={icone}></img>
+          </StyledLink>
         </NavBar>
         <Content></Content>
         <Footer>
-          <Adicionar>
+          <StyledButton to="/nova-entrada">
             <img src={plus}></img>
             <span>
               Nova
               <br />
               entrada
             </span>
-          </Adicionar>
-          <Remover>
+          </StyledButton>
+          <div></div>
+          <StyledButton to="/nova-saida">
             <img src={less}></img>
             <span>
               Nova
               <br />
               saída
             </span>
-          </Remover>
+          </StyledButton>
         </Footer>
       </Homebox>
     </Container>
@@ -44,6 +48,7 @@ const NavBar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: initial;
   font-size: 24px;
   font-weight: 700;
   color: #fff;
@@ -73,28 +78,21 @@ const Footer = styled.footer`
   span {
     font-size: 17px;
   }
+  div{
+    width: 20px;
+  }
 `;
 
-const Adicionar = styled.div`
+const StyledButton = styled(Link)`
   height: 114px;
   width: 100%;
   border-radius: 5px;
   background-color: #a328d6;
-  margin-right: 10px;
   padding: 8px;
+  color: #fff;
+  font-weight: 700;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const Remover = styled.div`
-  height: 114px;
-  width: 100%;
-  border-radius: 5px;
-  background-color: #a328d6;
-  margin-left: 10px;
-  padding: 8px;
-  display: flex;
+  text-decoration: none;
   flex-direction: column;
   justify-content: space-between;
 `;

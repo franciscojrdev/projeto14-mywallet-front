@@ -15,11 +15,7 @@ export const Box = styled.div`
         font-size: 32px;
         font-family: "Saira Stencil One", cursive;
     }
-    h2{
-        font-size: 15px;
-        font-weight: 700;
-        text-align: center;
-    }
+    
 
     @media(max-width:600px){
         width: 100%;

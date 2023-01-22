@@ -2,22 +2,81 @@ import { Box } from "../../components/Box/Box";
 import { Container } from "../../components/Container/Container";
 import styled from "styled-components";
 import { Form } from "../../components/Form/Form";
+import { StyledLink } from "../SingInPage/SignIn";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function SignUp() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    repeat_password: "",
+  });
+
+  const navigate = useNavigate();
+
+  function handleForm(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+  function createAccount(e) {
+    e.preventDefault();
+
+    const url = `http://localhost:5000/sign-up`;
+
+    axios.post(url, form).then((res) => {
+      console.log(res.data);
+      navigate("/");
+    }).catch((err)=>{
+      alert("Erro no cadastro")
+      console.log(err.response.data.message)
+    })
+  }
+
   return (
     <Container>
       <Box>
         <h1>MyWallet</h1>
-        <Form>
-          <input id="name" type="text" placeholder="Nome" />
-          <input id="email" type="email" placeholder="E-mail" />
-          <input id="senha" type="password" placeholder="Senha" />
-          <input id="rsenha" type="password" placeholder="Confirme a Senha" />
+        <Form onSubmit={createAccount}>
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleForm}
+            type="text"
+            placeholder="Nome"
+            required
+          />
+          <input
+            name="email"
+            value={form.email}
+            onChange={handleForm}
+            type="email"
+            placeholder="E-mail"
+            required
+          />
+          <input
+            name="password"
+            value={form.password}
+            onChange={handleForm}
+            type="password"
+            placeholder="Senha"
+            required
+          />
+          <input
+            name="repeat_password"
+            value={form.repeat_password}
+            onChange={handleForm}
+            type="password"
+            placeholder="Confirme a Senha"
+            required
+          />
           <button type="submit">Cadastrar</button>
         </Form>
-        <h2>
+        <StyledLink to="/">
           Já tem uma conta? <br /> Entre agora!
-        </h2>
+        </StyledLink>
       </Box>
     </Container>
   );
