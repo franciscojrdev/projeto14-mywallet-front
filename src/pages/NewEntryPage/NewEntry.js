@@ -9,7 +9,7 @@ import AuthContext from "../../contexts/AuthContext";
 
 export default function NewEntry() {
   const [entrada, setEntrada] = useState({
-    valor: 0,
+    valor:0,
     description: "",
     status: "entrada",
   });

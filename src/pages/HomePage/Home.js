@@ -13,14 +13,15 @@ import axios from "axios";
 export default function Home() {
   const [dados, setDados] = useState([]);
   const { token } = useContext(AuthContext);
+  // const [valor,setValor] = useState(0)
 
   useEffect(() => {
     const url = "http://localhost:5000/transacoes";
 
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     axios
       .get(url, config)
@@ -29,7 +30,7 @@ export default function Home() {
         setDados(res.data);
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err.response.message);
       });
   }, []);
   console.log("token", token);
@@ -39,21 +40,21 @@ export default function Home() {
     <Container>
       <Homebox>
         <NavBar>
-          <h2>Olá, {dados?.user?.name}</h2>
+          <h2>Olá, {dados.user?.name}</h2>
           <StyledLink to="/">
             <img src={icone}></img>
           </StyledLink>
         </NavBar>
         <Content>
-          {dados.length === 0?
-          <EmptyList>
-            Não há registros <br /> de entrada ou saída
-          </EmptyList>:
-          <FullList>
-
-          </FullList>
-        }
-          
+          {dados.list?.length === 0 ? (
+            <EmptyList>
+              Não há registros <br /> de entrada ou saída
+            </EmptyList>
+          ) : (
+            <FullList>
+              Ha registros aqui
+            </FullList>
+          )}
         </Content>
         <Footer>
           <StyledButton to="/nova-entrada">
@@ -97,6 +98,7 @@ const NavBar = styled.header`
 const Content = styled.main`
   width: 100%;
   height: 70%;
+  padding: 20px;
   margin: 10px 0 30px;
   border-radius: 5px;
   background-color: #fff;
@@ -115,7 +117,19 @@ const EmptyList = styled.div`
 
 const FullList = styled.div`
   width: 100%;
-`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  section {
+    width: 100%;
+    height: 20%;
+    background-color: #fffaaa;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 
 const Footer = styled.footer`
   width: 100%;
