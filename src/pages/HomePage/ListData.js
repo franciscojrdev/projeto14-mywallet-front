@@ -15,13 +15,13 @@ export default function ListData({ list }) {
   return (
     <FullList>
       <ul>
-        {list?.map((el) => (
-          <li>
-            <Title>
+        {list?.map((el,i) => (
+          <li key={i}>
+            <Title data-test="registry-name">
               <h2>{el.day}</h2>
               <h3>{el.description}</h3>
             </Title>
-            <Valor status={el.status === "entrada" ? "#03AC00" : "#C70000"}>
+            <Valor data-test="registry-amount" status={el.status === "entrada" ? "#03AC00" : "#C70000"}>
               {el.valor}
             </Valor>
           </li>
@@ -29,7 +29,7 @@ export default function ListData({ list }) {
       </ul>
       <section>
         <h1>SALDO</h1>
-        <Total cor={valorTotal > 0 ? "#03AC00" : "#C70000"}>
+        <Total data-test="total-amount" cor={valorTotal > 0 ? "#03AC00" : "#C70000"}>
           {valorTotal}
         </Total>
       </section>
@@ -70,7 +70,7 @@ const FullList = styled.div`
 const Total = styled.h2`
   width: 20px;
   color: ${(props) => props.cor};
-  margin-right: 25px;
+  margin-right: 35px;
 `;
 
 const Valor = styled.span`

@@ -19,7 +19,7 @@ export default function SignIn() {
   function login(e) {
     e.preventDefault();
 
-    const url = "http://localhost:5000/sign-in";
+    const url = `${process.env.REACT_APP_API_URL}/sign-in`;
 
     axios
       .post(url, form)
@@ -45,6 +45,7 @@ export default function SignIn() {
             type="email"
             placeholder="E-mail"
             required
+            data-test="email"
           />
           <input
             name="password"
@@ -53,8 +54,9 @@ export default function SignIn() {
             type="password"
             placeholder="Senha"
             required
+            data-test="password"
           />
-          <button type="submit">Entrar</button>
+          <button type="submit" data-test="sign-in-submit">Entrar</button>
         </Form>
         <StyledLink to="/cadastro">Primeira vez? Cadastre-se</StyledLink>
       </Box>

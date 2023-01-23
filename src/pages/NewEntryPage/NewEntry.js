@@ -5,7 +5,6 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
-// import CurrencyInput from "react-currency-input-field";
 
 export default function NewEntry() {
   const [entrada, setEntrada] = useState({
@@ -23,7 +22,8 @@ export default function NewEntry() {
   function inserirEntrada(e) {
     e.preventDefault();
 
-    const url = "http://localhost:5000/transacoes";
+    const url = `${process.env.REACT_APP_API_URL}/transacoes`;
+
 
     axios.post(url, {
       token:token,
@@ -43,14 +43,6 @@ export default function NewEntry() {
       <BoxPost>
         <h1>Nova entrada</h1>
         <Form onSubmit={inserirEntrada}>
-          {/* <CurrencyInput
-            id="input-example"
-            name="input-name"
-            placeholder="Valor"
-            // defaultValue={}
-            decimalsLimit={2}
-            onValueChange={(value, name) => console.log(value, name)}
-          /> */}
           <input
             name="valor"
             value={entrada.valor}
@@ -58,6 +50,7 @@ export default function NewEntry() {
             type="number"
             placeholder="Valor"
             required
+            data-test="registry-amount-input"
           />
           <input
             name="description"
@@ -66,8 +59,9 @@ export default function NewEntry() {
             type="text"
             placeholder="Descrição"
             required
+            data-test="registry-name-input"
           />
-          <button type="submit">Salvar entrada</button>
+          <button type="submit" data-test="registry-save">Salvar entrada</button>
         </Form>
       </BoxPost>
     </Container>

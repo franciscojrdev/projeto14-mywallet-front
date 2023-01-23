@@ -16,7 +16,8 @@ export default function Home() {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const url = "http://localhost:5000/transacoes";
+    
+    const url = `${process.env.REACT_APP_API_URL}/transacoes`;
 
     const config = {
       headers: {
@@ -38,8 +39,8 @@ export default function Home() {
     <Container>
       <Homebox>
         <NavBar>
-          <h2>Olá, {dados.user?.name}</h2>
-          <StyledLink to="/">
+          <h2 data-test="user-name">Olá, {dados.user?.name}</h2>
+          <StyledLink data-test="logout" to="/">
             <img src={icone}></img>
           </StyledLink>
         </NavBar>
@@ -53,7 +54,7 @@ export default function Home() {
           )}
         </Content>
         <Footer>
-          <StyledButton to="/nova-entrada">
+          <StyledButton data-test="new-income" to="/nova-entrada">
             <img src={plus}></img>
             <span>
               Nova
@@ -62,7 +63,7 @@ export default function Home() {
             </span>
           </StyledButton>
           <div></div>
-          <StyledButton to="/nova-saida">
+          <StyledButton data-test="new-expense" to="/nova-saida">
             <img src={less}></img>
             <span>
               Nova

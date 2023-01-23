@@ -24,7 +24,7 @@ export default function SignUp() {
   function createAccount(e) {
     e.preventDefault();
 
-    const url = `http://localhost:5000/sign-up`;
+    const url = `${process.env.REACT_APP_API_URL}/sign-up`;
 
     axios.post(url, form).then((res) => {
       console.log(res.data);
@@ -47,6 +47,7 @@ export default function SignUp() {
             type="text"
             placeholder="Nome"
             required
+            data-test="name"
           />
           <input
             name="email"
@@ -55,6 +56,7 @@ export default function SignUp() {
             type="email"
             placeholder="E-mail"
             required
+            data-test="email"
           />
           <input
             name="password"
@@ -63,6 +65,7 @@ export default function SignUp() {
             type="password"
             placeholder="Senha"
             required
+            data-test="password"
           />
           <input
             name="repeat_password"
@@ -71,8 +74,9 @@ export default function SignUp() {
             type="password"
             placeholder="Confirme a Senha"
             required
+            data-test="conf-password"
           />
-          <button type="submit">Cadastrar</button>
+          <button type="submit" data-test="sign-up-submit">Cadastrar</button>
         </Form>
         <StyledLink to="/">
           Já tem uma conta? <br /> Entre agora!

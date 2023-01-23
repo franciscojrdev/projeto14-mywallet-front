@@ -21,8 +21,8 @@ export default function NewSpending() {
   function inserirSaida(e) {
     e.preventDefault();
 
-    const url = "http://localhost:5000/transacoes";
-
+    const url = `${process.env.REACT_APP_API_URL}/transacoes`;
+    
     axios
       .post(url, {
         ...saida,
@@ -47,6 +47,7 @@ export default function NewSpending() {
             type="number"
             placeholder="Valor"
             required
+            data-test="registry-amount-input"
           />
           <input
             name="description"
@@ -55,8 +56,9 @@ export default function NewSpending() {
             type="text"
             placeholder="Descrição"
             required
+            data-test="registry-name-input"
           />
-          <button type="submit">Salvar saída</button>
+          <button type="submit" data-test="registry-save">Salvar saída</button>
         </Form>
       </BoxPost>
     </Container>
