@@ -55,7 +55,7 @@ export default function NewEntry() {
             name="valor"
             value={entrada.valor}
             onChange={handleForm}
-            type="text"
+            type="number"
             placeholder="Valor"
             required
           />

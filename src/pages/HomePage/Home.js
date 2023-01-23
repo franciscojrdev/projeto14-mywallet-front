@@ -9,11 +9,11 @@ import { StyledLink } from "../SingInPage/SignIn";
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
+import ListData from "./ListData";
 
 export default function Home() {
   const [dados, setDados] = useState([]);
   const { token } = useContext(AuthContext);
-  // const [valor,setValor] = useState(0)
 
   useEffect(() => {
     const url = "http://localhost:5000/transacoes";
@@ -33,8 +33,6 @@ export default function Home() {
         console.log(err.response.message);
       });
   }, []);
-  console.log("token", token);
-  console.log(dados);
 
   return (
     <Container>
@@ -51,9 +49,7 @@ export default function Home() {
               Não há registros <br /> de entrada ou saída
             </EmptyList>
           ) : (
-            <FullList>
-              Ha registros aqui
-            </FullList>
+            <ListData list={dados.list} />
           )}
         </Content>
         <Footer>
@@ -113,22 +109,6 @@ const EmptyList = styled.div`
   font-size: 20px;
   font-weight: 400;
   text-align: center;
-`;
-
-const FullList = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  section {
-    width: 100%;
-    height: 20%;
-    background-color: #fffaaa;
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 const Footer = styled.footer`
